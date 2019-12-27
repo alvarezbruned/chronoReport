@@ -193,11 +193,11 @@ class ChronoReport(Frame):
 
     def reported_name(self, cursor):
         if cursor == 0:
-            name = self.first_name.get()
+            name = 'first' if self.first_name.get() == '' else self.first_name.get()
         elif cursor == 1:
-            name = self.second_name.get()
+            name = 'second' if self.second_name.get() == '' else self.second_name.get()
         elif cursor == 2:
-            name = self.third_name.get()
+            name = 'third' if self.third_name.get() == '' else self.third_name.get()
         return name
 
 
