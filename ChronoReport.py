@@ -1,7 +1,5 @@
 import os
 from tkinter import *
-import datetime
-import time
 from ChronoItem import ChronoItem
 
 
