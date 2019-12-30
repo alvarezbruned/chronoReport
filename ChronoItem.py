@@ -122,3 +122,6 @@ class ChronoItem():
 
     def get_name(self):
         return 'item ' + str(self.pos) if self.name.get() == '' else self.name.get()
+
+    def set_name(self, name):
+        self.name.insert(0, name)

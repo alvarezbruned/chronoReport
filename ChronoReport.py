@@ -6,8 +6,14 @@ from ChronoItem import ChronoItem
 class ChronoReport:
     tk = Tk()
     chronos = list()
-    for x in range(0, os.getenv('CHRONO_NUM_ITEMS', 6)):
-        chronos.append(ChronoItem(tk, (x + 1)))
+    if os.getenv('CHRONO_NAMES', "") != '':
+        names = os.getenv('CHRONO_NAMES', "").split("|")
+        for x in range(0, len(names)):
+            chronos.append(ChronoItem(tk, (x + 1)))
+            chronos[x].set_name(names[x])
+    else:
+        for x in range(0, int(os.getenv('CHRONO_NUM_ITEMS', 3))):
+            chronos.append(ChronoItem(tk, (x + 1)))
 
     def __init__(self):
         self.reporting = Button(self.tk)
