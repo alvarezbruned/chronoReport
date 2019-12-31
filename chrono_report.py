@@ -6,14 +6,29 @@ from chrono_item import ChronoItem
 class ChronoReport:
     tk = Tk()
     chronos = list()
+
+    item_created_counter = 0
+    items_created_in_row = 0
+    num_row = 0
     if os.getenv('CHRONO_NAMES', "") != '':
         names = os.getenv('CHRONO_NAMES', "").split("|")
-        for x in range(0, len(names)):
-            chronos.append(ChronoItem(tk, (x + 1)))
-            chronos[x].set_name(names[x])
+        while item_created_counter < len(names):
+            chronos.append(ChronoItem(tk, (items_created_in_row + 1), num_row))
+            chronos[item_created_counter].set_name(names[item_created_counter])
+            items_created_in_row += 1
+            item_created_counter += 1
+            if items_created_in_row >= 6:
+                items_created_in_row = 0
+                num_row += 1
     else:
-        for x in range(0, int(os.getenv('CHRONO_NUM_ITEMS', 3))):
-            chronos.append(ChronoItem(tk, (x + 1)))
+        while item_created_counter < int(os.getenv('CHRONO_NUM_ITEMS', 3)):
+            chronos.append(ChronoItem(tk, (items_created_in_row + 1), num_row))
+            chronos[item_created_counter].set_name('item ' + str(item_created_counter))
+            items_created_in_row += 1
+            item_created_counter += 1
+            if items_created_in_row >= 6:
+                items_created_in_row = 0
+                num_row += 1
 
     def __init__(self):
         self.reporting = Button(self.tk)
