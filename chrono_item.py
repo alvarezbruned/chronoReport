@@ -44,7 +44,7 @@ class ChronoItem():
 
         todaySufix = self.actual_datetime()
 
-        self.tiempo_reporting = todaySufix + '  ' + self.secondsToDateFormat(tiempo_transcurrido)
+        self.tiempo_reporting = todaySufix + '\n' + self.secondsToDateFormat(tiempo_transcurrido)
         print(self.get_name() + ' ' + self.tiempo_reporting)
 
         self.label_stop["text"] = self.tiempo_reporting
@@ -87,21 +87,22 @@ class ChronoItem():
         time_passed = "%sh %sm %ss" % (hours, minutes, seconds)
         return time_passed
 
-    def __init__(self, tk, pos):
+    def __init__(self, tk, pos, row=0):
         self.pos = pos
         self.name = Entry(tk)
         self.button_start = self.button_builder(tk, 'start')
         self.button_stop = self.button_builder(tk, 'stop')
         self.label_start = self.label_builder(tk, 'start')
         self.label_stop = self.label_builder(tk, 'stop')
-        self.organize_components(pos)
+        self.organize_components(pos, row)
 
-    def organize_components(self, pos):
-        self.name.grid(column=pos, row=0)
-        self.button_start.grid(column=pos, row=1)
-        self.button_stop.grid(column=pos, row=2)
-        self.label_start.grid(column=pos, row=4)
-        self.label_stop.grid(column=pos, row=5)
+    def organize_components(self, pos, row=0):
+        fix_row = 5 * row
+        self.name.grid(column=pos, row=(0 + fix_row))
+        self.button_start.grid(column=pos, row=(1 + fix_row))
+        self.button_stop.grid(column=pos, row=(2 + fix_row))
+        self.label_start.grid(column=pos, row=(3 + fix_row))
+        self.label_stop.grid(column=pos, row=(4 + fix_row))
 
     def clean_fields(self):
         self.label_start["text"] = ''

@@ -1,6 +1,6 @@
 import os
 from tkinter import *
-from ChronoItem import ChronoItem
+from chrono_item import ChronoItem
 
 
 class ChronoReport:
