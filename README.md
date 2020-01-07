@@ -1,5 +1,6 @@
 # chronoReport
-
+## require install:  
+```sudo apt-get install python3-tk```  
 An app to chronometer people free time.  
 Perfect to control people's breaks  
 and save a report in a txt file
