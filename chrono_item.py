@@ -53,9 +53,9 @@ class ChronoItem():
 
     def actual_datetime(self):
         now = datetime.datetime.now()
-        todaySufix = str(now.day) \
-                     + '/' + str(now.month) \
-                     + '/' + str(now.year) \
+        todaySufix = str(now.year) \
+                     + '-' + str(now.month) \
+                     + '-' + str(now.day) \
                      + ' ' + str(now.hour) \
                      + ':' + str(now.minute) \
                      + ':' + str(now.second)
@@ -84,7 +84,7 @@ class ChronoItem():
             seconds = "0%s" % str(int(seconds))
         else:
             seconds = "%s" % str(int(seconds))
-        time_passed = "%sh %sm %ss" % (hours, minutes, seconds)
+        time_passed = "%sh:%sm:%ss" % (hours, minutes, seconds)
         return time_passed
 
     def __init__(self, tk, pos, row=0):

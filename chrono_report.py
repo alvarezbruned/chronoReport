@@ -44,17 +44,16 @@ class ChronoReport:
             chrono.update_labels()
 
     def report_times(self):
-        for chrono in self.chronos:
-            if chrono.tiempo_reporting != '':
-                name = chrono.get_name()
-                os.popen('echo "'
-                         + name + ' '
-                         + chrono.tiempo_reporting_start
-                         + ' '
-                         + chrono.tiempo_reporting +
-                         '" >> ' + os.getenv('CHRONO_PATH_REPORT', '~/delay_report.txt'))
-                chrono.tiempo_reporting = ''
-                chrono.tiempo_reporting_start = ''
-                chrono.clean_fields()
+        with open(os.getenv('CHRONO_PATH_REPORT', 'delay_report.csv'), "w+") as log_file:
+            for chrono in self.chronos:
+                if chrono.tiempo_reporting != '':
+                    name = chrono.get_name()
+                    log_file.write('"' + name + '","'
+                                   + chrono.tiempo_reporting_start + '","'
+                                   + chrono.tiempo_reporting.replace('\n', '","') + '"\n')
+                    chrono.tiempo_reporting = ''
+                    chrono.tiempo_reporting_start = ''
+                    chrono.clean_fields()
+
 
 app = ChronoReport()
