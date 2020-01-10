@@ -44,7 +44,7 @@ class ChronoReport:
             chrono.update_labels()
 
     def report_times(self):
-        with open(os.getenv('CHRONO_PATH_REPORT', 'delay_report.csv'), "w+") as log_file:
+        with open(os.getenv('CHRONO_PATH_REPORT', 'delay_report.csv'), "a+") as log_file:
             for chrono in self.chronos:
                 if chrono.tiempo_reporting != '':
                     name = chrono.get_name()
